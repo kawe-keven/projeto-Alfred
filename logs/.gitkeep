@@ -1,0 +1,7 @@
+# Esta pasta armazena os logs de runtime do Alfred.
+# Os arquivos .log sao gerados automaticamente pelo run_alfred.bat.
+#
+# Arquivos esperados:
+#   boot.log     — sequencia de inicializacao e status de cada etapa
+#   backend.log  — saida do uvicorn / FastAPI (erros Python, stack traces)
+#   frontend.log — saida do Vite (erros de compilacao TypeScript/React)

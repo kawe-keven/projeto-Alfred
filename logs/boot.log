@@ -1,0 +1,140 @@
+ 
+===================================================== 
+ Alfred iniciando em 09/03/2026 as 13:28:24,27 
+===================================================== 
+ [1/5] INFO - ChromaDB: primeiro boot, banco sera criado 
+ [2/5] ERRO - venv nao encontrado 
+ Boot abortado — venv ausente. 
+ 
+===================================================== 
+ Alfred iniciando em 09/03/2026 as 13:28:47,40 
+===================================================== 
+ [1/5] INFO - ChromaDB: primeiro boot, banco sera criado 
+ [2/5] ERRO - venv nao encontrado 
+ Boot abortado — venv ausente. 
+ 
+===================================================== 
+ Alfred iniciando em 09/03/2026 as 13:28:53,42 
+===================================================== 
+ [1/5] INFO - ChromaDB: primeiro boot, banco sera criado 
+ [2/5] ERRO - venv nao encontrado 
+ Boot abortado — venv ausente. 
+ 
+===================================================== 
+ Alfred iniciando em 09/03/2026 as 14:13:49,79 
+===================================================== 
+ [1/5] INFO - ChromaDB: primeiro boot, banco sera criado 
+ [2/5] OK - venv: .venv 
+ [3/5] OK - Backend iniciado 
+ [3/5] AVISO - health check falhou apos 5s 
+ [4/5] OK - Frontend iniciado 
+ [5/5] OK - navegador aberto 
+ Boot concluido com sucesso. 
+ 
+===================================================== 
+ Alfred iniciando em 09/03/2026 as 19:35:58,91 
+===================================================== 
+ [1/5] OK - ChromaDB: carregando dados existentes 
+ [2/5] OK - venv: .venv 
+ [3/5] OK - Backend iniciado 
+ [3/5] OK - health check passou 
+ [4/5] OK - Frontend iniciado 
+ [5/5] OK - navegador aberto 
+ Boot concluido com sucesso. 
+ 
+===================================================== 
+ Alfred iniciando em 09/03/2026 as 20:38:21,46 
+===================================================== 
+ [1/5] OK - ChromaDB: carregando dados existentes 
+ [2/5] OK - venv: .venv 
+ [3/5] OK - Backend iniciado 
+ [3/5] OK - health check passou 
+ [4/5] OK - Frontend iniciado 
+ [5/5] OK - navegador aberto 
+ Boot concluido com sucesso. 
+ 
+===================================================== 
+ Alfred iniciando em 09/03/2026 as 21:53:37,95 
+===================================================== 
+ [1/5] OK - ChromaDB: carregando dados existentes 
+ [2/5] OK - venv: .venv 
+ [3/5] OK - Backend iniciado 
+ [3/5] OK - health check passou 
+ [4/5] OK - Frontend iniciado 
+ [5/5] OK - navegador aberto 
+ Boot concluido com sucesso. 
+ 
+===================================================== 
+ Alfred iniciando em 10/03/2026 as  8:26:54,51 
+===================================================== 
+ [1/5] OK - ChromaDB: carregando dados existentes 
+ [2/5] OK - venv: .venv 
+ [3/5] OK - Backend iniciado 
+ [3/5] ERRO - health check falhou 
+ [4/5] OK - Frontend iniciado 
+ [5/5] OK - navegador aberto 
+ Boot concluido com sucesso. 
+ 
+===================================================== 
+ Alfred iniciando em 10/03/2026 as  8:41:36,70 
+===================================================== 
+ [1/5] OK - ChromaDB: carregando dados existentes 
+ [2/5] OK - venv: .venv 
+ [3/5] OK - Backend iniciado 
+ [3/5] OK - health check passou (2a tentativa) 
+ [4/5] OK - Frontend iniciado 
+ [5/5] OK - navegador aberto 
+ Boot concluido com sucesso. 
+ 
+===================================================== 
+ Alfred iniciando em 10/03/2026 as 10:15:10,49 
+===================================================== 
+ [1/5] OK - ChromaDB: carregando dados existentes 
+ [2/5] OK - venv: .venv 
+ [3/5] OK - Backend iniciado 
+ [3/5] OK - health check passou (2a tentativa) 
+ [4/5] OK - Frontend iniciado 
+ [5/5] OK - navegador aberto 
+ Boot concluido com sucesso. 
+ 
+===================================================== 
+ Alfred iniciando em 10/03/2026 as 10:17:14,47 
+===================================================== 
+ [1/5] OK - ChromaDB: carregando dados existentes 
+ [2/5] OK - venv: .venv 
+ [3/5] OK - Backend iniciado 
+ [3/5] OK - health check passou (2a tentativa) 
+ [4/5] OK - Frontend iniciado 
+ [5/5] OK - navegador aberto 
+ Boot concluido com sucesso. 
+ 
+===================================================== 
+ Alfred iniciando em 10/03/2026 as 10:21:09,33 
+===================================================== 
+ [1/5] OK - ChromaDB: carregando dados existentes 
+ [2/5] OK - venv: .venv 
+ [3/5] OK - Backend iniciado 
+ [3/5] ERRO - health check falhou 
+ [4/5] OK - Frontend iniciado 
+ [5/5] OK - navegador aberto 
+ Boot concluido com sucesso. 
+ 
+===================================================== 
+ Alfred iniciando em 12/03/2026 as 19:04:24,86 
+===================================================== 
+ [1/5] OK - ChromaDB: carregando dados existentes 
+ [2/5] OK - venv: .venv 
+ [3/5] OK - Backend iniciado 
+ [3/5] ERRO - health check falhou 
+ [4/5] OK - Frontend iniciado 
+ 
+===================================================== 
+ Alfred iniciando em 12/03/2026 as 20:01:53,20 
+===================================================== 
+ [1/5] OK - ChromaDB: carregando dados existentes 
+ [2/5] OK - venv: .venv 
+ [3/5] OK - Backend iniciado 
+ [3/5] ERRO - health check falhou 
+ [4/5] OK - Frontend iniciado 
+ [5/5] OK - navegador aberto 
+ Boot concluido com sucesso. 

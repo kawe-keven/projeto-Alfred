@@ -1,0 +1,53 @@
+{
+    // ── Python ───────────────────────────────────────────────────────────────
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+    "python.terminal.activateEnvironment": true,
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    // Pylance / Pyright — análise estática
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.indexing": true,
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}"
+    ],
+    "python.analysis.exclude": [
+        "**/.venv/**",
+        "**/venv/**",
+        "**/node_modules/**",
+        "**/dist/**",
+        "**/build/**",
+        "**/__pycache__/**",
+        "**/.mypy_cache/**",
+        "**/.pytest_cache/**",
+        "**/memory/vector_db/**"
+    ],
+    "python.analysis.include": [
+        "${workspaceFolder}/agents",
+        "${workspaceFolder}/core",
+        "${workspaceFolder}/memory",
+        "${workspaceFolder}/main.py"
+    ],
+    // ── Editor ───────────────────────────────────────────────────────────────
+    "editor.formatOnSave": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python",
+        "editor.formatOnSave": true
+    },
+    // ── CSS — suprime avisos de @tailwind/@apply (resolvidos pelo Tailwind IntelliSense)
+    "css.lint.unknownAtRules": "ignore",
+    // ── Exclusões do Explorer e buscas ───────────────────────────────────────
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.mypy_cache": true,
+        "**/.pytest_cache": true,
+        "**/.venv": false,
+        "**/memory/vector_db": true
+    },
+    "search.exclude": {
+        "**/.venv/**": true,
+        "**/node_modules/**": true,
+        "**/dist/**": true,
+        "**/memory/vector_db/**": true,
+        "**/__pycache__/**": true
+    }
+}

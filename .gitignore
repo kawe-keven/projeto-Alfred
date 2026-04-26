@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.pytest_cache/
+.mypy_cache/
+.coverage
+
+# Virtual environments
+.venv/
+venv/
+
+# Frontend / Node
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.cache/
+
+# Logs and runtime outputs
+logs/*.log
+*.log
+
+# Local databases and vector store artifacts
+memory/*.db
+memory/vector_db/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/

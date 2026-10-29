@@ -44,6 +44,7 @@ class PainelAlfred:
         self.voz_estado = Path(tempfile.gettempdir()) / f"alfred-voz-estado-{os.getpid()}.txt"
         self.confirmacao: dict | None = None
         self.confirmacao_lock = threading.Lock()
+        self.confirmacao_serial = threading.Lock()
         self.confirmacao_evento: threading.Event | None = None
 
     def _sessao(self) -> SessaoConversa:
@@ -55,20 +56,21 @@ class PainelAlfred:
         return self.sessao
 
     def solicitar_confirmacao(self, pergunta: str) -> str:
-        evento = threading.Event()
-        with self.confirmacao_lock:
-            self.confirmacao = {"question": pergunta, "answer": None}
-            self.confirmacao_evento = evento
-        if not evento.wait(timeout=120):
+        with self.confirmacao_serial:
+            evento = threading.Event()
             with self.confirmacao_lock:
+                self.confirmacao = {"question": pergunta, "answer": None}
+                self.confirmacao_evento = evento
+            if not evento.wait(timeout=120):
+                with self.confirmacao_lock:
+                    self.confirmacao = None
+                    self.confirmacao_evento = None
+                return "não"
+            with self.confirmacao_lock:
+                resposta = (self.confirmacao or {}).get("answer") or "não"
                 self.confirmacao = None
                 self.confirmacao_evento = None
-            return "não"
-        with self.confirmacao_lock:
-            resposta = (self.confirmacao or {}).get("answer") or "não"
-            self.confirmacao = None
-            self.confirmacao_evento = None
-        return resposta
+            return resposta
 
     def responder_confirmacao(self, resposta: str) -> bool:
         with self.confirmacao_lock:

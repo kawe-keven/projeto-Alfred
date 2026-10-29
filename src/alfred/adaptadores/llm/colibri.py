@@ -103,24 +103,62 @@ class ProvedorColibri:
                         break
                     try:
                         evento = json.loads(dados.decode("utf-8"))
-                        delta = evento["choices"][0]["delta"]
+                        escolhas = evento["choices"]
+                        escolha = escolhas[0]
+                        delta = escolha["delta"]
                     except (UnicodeDecodeError, json.JSONDecodeError, KeyError, IndexError, TypeError):
                         raise RespostaOllamaMalformada(
                             "Colibri retornou um evento de streaming inválido"
                         ) from None
+                    if not isinstance(evento, dict) or not isinstance(escolhas, list):
+                        raise RespostaOllamaMalformada(
+                            "Colibri retornou um evento de streaming inválido"
+                        )
+                    if not isinstance(escolha, dict) or not isinstance(delta, dict):
+                        raise RespostaOllamaMalformada(
+                            "Colibri retornou um evento de streaming inválido"
+                        )
                     texto = delta.get("content") or ""
-                    if isinstance(texto, str) and texto:
+                    if not isinstance(texto, str):
+                        raise RespostaOllamaMalformada(
+                            "Colibri retornou conteúdo de streaming inválido"
+                        )
+                    if texto:
                         yield EventoLLM(texto=texto)
-                    for chamada in delta.get("tool_calls", []):
+                    chamadas_delta = delta.get("tool_calls", [])
+                    if not isinstance(chamadas_delta, list):
+                        raise RespostaOllamaMalformada(
+                            "Colibri retornou chamadas de ferramenta inválidas"
+                        )
+                    for chamada in chamadas_delta:
                         if not isinstance(chamada, dict):
-                            continue
+                            raise RespostaOllamaMalformada(
+                                "Colibri retornou chamadas de ferramenta inválidas"
+                            )
                         indice = chamada.get("index", 0)
-                        item = chamadas.setdefault(indice, {"id": "", "name": "", "arguments": ""})
-                        item["id"] += chamada.get("id", "")
                         funcao = chamada.get("function") or {}
-                        item["name"] += funcao.get("name", "")
-                        item["arguments"] += funcao.get("arguments", "")
-                    escolha = evento["choices"][0]
+                        if not isinstance(funcao, dict):
+                            raise RespostaOllamaMalformada(
+                                "Colibri retornou chamadas de ferramenta inválidas"
+                            )
+                        identificador = chamada.get("id", "")
+                        nome = funcao.get("name", "")
+                        argumentos = funcao.get("arguments", "")
+                        if (
+                            isinstance(indice, bool)
+                            or not isinstance(indice, int)
+                            or indice < 0
+                            or not isinstance(identificador, str)
+                            or not isinstance(nome, str)
+                            or not isinstance(argumentos, str)
+                        ):
+                            raise RespostaOllamaMalformada(
+                                "Colibri retornou chamadas de ferramenta inválidas"
+                            )
+                        item = chamadas.setdefault(indice, {"id": "", "name": "", "arguments": ""})
+                        item["id"] += identificador
+                        item["name"] += nome
+                        item["arguments"] += argumentos
                     if escolha.get("finish_reason") is not None:
                         finalizado = True
                 self._resposta_ativa = None

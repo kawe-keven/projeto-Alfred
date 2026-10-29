@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import asyncio
-import json
 import logging
 import os
 import threading
@@ -566,9 +565,8 @@ class OrquestradorDeVoz:
 
     @staticmethod
     def _registrar_conversa(evento: str, texto: str, resultado: str) -> None:
-        """Registra input/output em campos explícitos e escapa quebras de linha."""
-        campo = "frase_input" if evento == "escutado" else "frase_output"
-        log.info("conversa %s=%s resultado=%s", campo, json.dumps(texto, ensure_ascii=False), resultado)
+        """Registra metadados sem incluir o conteúdo privado da conversa."""
+        log.info("conversa evento=%s resultado=%s", evento, resultado)
 
     async def _ler_teclado(self) -> None:
         caminho_controle = os.getenv("ALFRED_VOZ_CONTROLE_ARQUIVO")

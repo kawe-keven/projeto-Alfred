@@ -39,7 +39,7 @@ O modelo de conversa e resumos configurado é `qwen3.5:4b`. A memória pode usar
 
 ## Voz
 
-A camada de voz é opcional e local. Ela usa `prompts/system.txt` junto às políticas e ao perfil existente para montar o prompt e mantém o histórico da conversa em memória. Silero VAD descarta trechos que não parecem voz humana, e o STT aplica redução de ruído, evita decodificar silêncio e usa por padrão NVIDIA Parakeet TDT v3 via sherpa-onnx em CPU. O modelo reconhece automaticamente 25 idiomas europeus, incluindo português; a qualidade em português brasileiro deve ser avaliada com a própria voz. O arquivo `dados/logs/voz.log` registra, com horário, `frase_input` e `frase_output`; por isso, pode conter informações pessoais e deve ser mantido protegido. `--debug` também salva áudio de entrada e transcrições localmente para avaliação do STT.
+A camada de voz é opcional e local. Ela usa `prompts/system.txt` junto às políticas e ao perfil existente para montar o prompt e mantém o histórico da conversa em memória. Silero VAD descarta trechos que não parecem voz humana, e o STT aplica redução de ruído, evita decodificar silêncio e usa por padrão NVIDIA Parakeet TDT v3 via sherpa-onnx em CPU. O modelo reconhece automaticamente 25 idiomas europeus, incluindo português; a qualidade em português brasileiro deve ser avaliada com a própria voz. O arquivo `dados/logs/voz.log` registra horário, evento e resultado, sem armazenar o texto da conversa. Logs criados por versões anteriores ainda podem conter frases e devem ser protegidos ou removidos manualmente. `--debug` salva áudio de entrada e transcrições localmente para avaliação do STT somente quando solicitado.
 
 ## Início rápido: assistente de voz
 

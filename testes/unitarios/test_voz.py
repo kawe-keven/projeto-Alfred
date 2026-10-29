@@ -730,9 +730,11 @@ def test_log_registra_transcricao_e_resposta(tmp_path):
         asyncio.run(orq._processar([0.0], 1.0))
         handler.flush()
         conteudo = log_path.read_text(encoding="utf-8")
-        assert "frase_input=" in conteudo
-        assert "frase_output=" in conteudo
-        assert sentinela in conteudo
+        assert "conversa evento=escutado resultado=transcrito" in conteudo
+        assert "conversa evento=dito resultado=reproducao_concluida" in conteudo
+        assert "frase_input=" not in conteudo
+        assert "frase_output=" not in conteudo
+        assert sentinela not in conteudo
     finally:
         logger.removeHandler(handler)
         handler.close()

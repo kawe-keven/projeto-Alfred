@@ -236,7 +236,7 @@ class Requisicao(BaseHTTPRequestHandler):
 
     def ler_json(self) -> dict:
         tamanho = int(self.headers.get("Content-Length", "0"))
-        if tamanho > 200_000:
+        if tamanho < 0 or tamanho > 200_000:
             raise ValueError("A requisição excede o limite permitido.")
         dados = json.loads(self.rfile.read(tamanho))
         if not isinstance(dados, dict):

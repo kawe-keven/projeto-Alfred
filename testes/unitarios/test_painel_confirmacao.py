@@ -77,3 +77,23 @@ def test_confirmacoes_concorrentes_nao_trocam_a_acao_pendente(monkeypatch) -> No
         painel.responder_confirmacao("não")
         primeira.join(1)
         segunda.join(1)
+
+
+def test_corpo_http_rejeita_content_length_negativo_sem_ler_stream() -> None:
+    from types import SimpleNamespace
+
+    from alfred.interfaces.web.app import Requisicao
+
+    class StreamNaoLegivel:
+        def read(self, _tamanho: int) -> bytes:
+            raise AssertionError("corpos inválidos não devem ser lidos")
+
+    requisicao = SimpleNamespace(
+        headers={"Content-Length": "-1"},
+        rfile=StreamNaoLegivel(),
+    )
+    try:
+        Requisicao.ler_json(requisicao)
+    except ValueError:
+        return
+    raise AssertionError("Content-Length negativo precisa ser rejeitado")

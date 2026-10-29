@@ -1,45 +1,9 @@
-fastapi>=0.110.0
-uvicorn[standard]>=0.27.0
-langchain>=0.2.0
-langchain-core>=0.2.0
-langchain-community>=0.2.0
-langchain-google-genai>=2.0.0   # Gemini 2.5 Flash — Free Tier
-langchain-ollama>=0.1.0          # Modelos locais via Ollama
-langchain-groq>=0.2.0            # Groq — Free Tier (llama 3.3 70B, ultrarrápido)
-langchain-openai>=0.1.0          # OpenRouter + OpenAI compatível
-python-dotenv>=1.0.0
-pydantic>=2.6.0
-pydantic-settings>=2.2.0
-
-# Memória Vetorial (longo prazo)
-chromadb>=0.5.0
-sentence-transformers>=3.0.0
-
-# Agente de Sistema
-psutil>=6.0.0
-
-# Agente de Visão
-Pillow>=10.0.0
-pyautogui>=0.9.54
-
-# Motor de Voz — TTS
-edge-tts>=6.1.0          # Voz neural Microsoft (pt-BR-AntonioNeural) — primário
-pygame-ce>=2.5.0         # Reprodução local do áudio gerado pelo edge-tts (wheel Python 3.14+)
-gTTS>=2.5.0              # Fallback TTS online (Google)
-pyttsx3>=2.90            # Fallback TTS offline
-
-# Motor de Voz — STT (servidor)
-SpeechRecognition>=3.10.0
-# pyaudio>=0.2.14  # necessário para captura de mic no servidor
-#                  # Windows: pip install pyaudio  (ou pipwin install pyaudio)
-#                  # Linux:   sudo apt install portaudio19-dev && pip install pyaudio
-
-# WebSockets (suporte nativo ao FastAPI via starlette — já incluso no uvicorn[standard])
-# websockets>=12.0  # instalado automaticamente como dep de uvicorn[standard]
-
-# Agente de Integração — Notícias via RSS
-feedparser>=6.0.8
-
-# requests já é dependência transitiva do LangChain; listado explicitamente para clareza
-requests>=2.31.0
-# openai-whisper   # opcional — STT local de alta precisão (requer torch)
+-e .
+numpy>=2.1
+sounddevice>=0.5.6
+silero-vad>=6.2.3
+torch>=2.10
+onnxruntime>=1.31
+sherpa-onnx>=1.12.0
+openwakeword>=0.6.0
+faster-whisper>=1.2.0

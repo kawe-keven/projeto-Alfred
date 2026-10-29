@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080c12">
+  <title>Alfred · Interface de comando</title>
+  <link rel="icon" type="image/png" sizes="128x128" href="/ui/alfred-favicon.png?v=2">
+<link rel="stylesheet" href="/ui/style.css?v=40">
+<link rel="stylesheet" href="/ui/vendor/maplibre-gl/maplibre-gl.css">
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <div class="shell">
+    <aside class="rail">
+      <a class="brand" href="#cli" aria-label="Alfred, início"><span class="brand-mark"><img class="reference-sphere tiny-sphere" src="/ui/alfred-sphere.png?v=2" alt=""></span><span>ALFRED<small>PERSONAL SYSTEM</small></span></a>
+      <div class="rail-caption">INTERFACE</div>
+      <nav class="nav" aria-label="Navegação principal">
+        <button class="nav-item" data-tab="cli"><span class="nav-icon">⌘</span><span>Terminal</span><kbd>01</kbd></button>
+        <button class="nav-item" data-tab="voice"><span class="nav-icon">◉</span><span>Voz Alfred</span><kbd>02</kbd></button>
+        <button class="nav-item active" data-tab="memory"><span class="nav-icon">✳</span><span>Memória vetorial</span><kbd>03</kbd></button>
+        <button class="nav-item" data-tab="map"><span class="nav-icon">▦</span><span>Mapa</span><kbd>04</kbd></button>
+        <button class="nav-item" data-tab="settings"><span class="nav-icon">⌁</span><span>Configuração</span><kbd>05</kbd></button>
+      </nav>
+      <div class="rail-bottom"><div class="system-ring"><img class="reference-sphere tiny-sphere" src="/ui/alfred-sphere.png?v=2" alt=""></div><div class="system-copy"><span class="eyebrow">SISTEMA LOCAL</span><strong><span class="dot" id="sys-dot"></span><span id="sys-state">Verificando</span></strong><small>Conexão protegida · loopback</small></div></div>
+      <div class="rail-footer"><span>ALFRED INTERFACE <b>v1.0</b></span><span class="live-mark">● LOCAL</span></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar"><div class="breadcrumb"><span>ALFRED</span><span class="crumb-slash">/</span><strong id="page-label">MEMÓRIA VETORIAL</strong></div><div class="top-right"><span class="clock" id="clock">--:--:--</span><span class="top-divider"></span><span class="secure"><span>◇</span> SESSÃO PRIVADA</span><button class="icon-button" id="refresh" aria-label="Atualizar estado" title="Atualizar estado">↻</button></div></header>
+
+      <section class="view" id="view-cli">
+        <div class="page-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> PAINEL DE COMANDO <span class="heading-code">/ 01</span></div><h1>À disposição<span class="period">.</span></h1><p>Uma conversa local, direta e sob seu comando.</p></div><div class="heading-orbit cli-orbit"><canvas class="sphere-mesh mini-sphere" id="cli-sphere" aria-label="Esfera líquida de partículas do Alfred" data-sphere-state="ocioso"></canvas></div></div>
+        <div class="workspace">
+          <section class="console-panel glass">
+            <div class="panel-top"><div class="panel-title"><span class="status-pulse"></span><div><strong>SESSÃO ALFRED</strong><small>CANAL LOCAL · PRIVADO</small></div></div><div class="panel-meta"><span id="chat-status">AGUARDANDO COMANDO</span><span class="panel-dots"><i></i><i></i><i></i></span></div></div>
+            <div class="chat-log" id="chat-log" aria-live="polite">
+              <div class="welcome" id="welcome"><img class="welcome-sigil reference-sphere small-sphere" src="/ui/alfred-sphere.png?v=2" alt="" aria-hidden="true"><div class="welcome-kicker">SISTEMA PRONTO</div><h2>Como posso ajudar?</h2><p>Digite uma mensagem ou use um comando para começar.</p><div class="suggestions"><button data-prompt="/ajuda"><span>⌘</span> Ver comandos <b>↗</b></button><button data-prompt="/voz"><span>◉</span> Status de voz <b>↗</b></button><button data-prompt="/perfil"><span>◈</span> Resumo do perfil <b>↗</b></button></div></div>
+            </div>
+            <form class="composer" id="chat-form"><div class="composer-decoration"><span class="input-chevron">›</span><input id="message" autocomplete="off" maxlength="4000" placeholder="Escreva uma mensagem ou comando…" aria-label="Mensagem para Alfred"><button class="send-button" type="submit" aria-label="Enviar mensagem"><span>ENVIAR</span><b>↑</b></button></div><div class="composer-foot"><span><span class="keycap">↵</span> para enviar <span class="foot-sep">·</span> CLI compatível com <code>/ajuda</code>, <code>/fontes</code> e <code>/limpar</code></span><span class="char-count" id="char-count">0000 / 4000</span></div></form>
+          </section>
+          <aside class="side-column"><section class="module-card glass status-card"><div class="card-kicker">ESTADO DO SISTEMA <span>01</span></div><div class="status-main"><div class="status-symbol"><span class="status-pulse"></span>◎</div><div><strong id="connection-title">Verificando</strong><small>Provedor de linguagem</small></div></div><div class="status-line"><span>MODELO ATIVO</span><b id="model-name">—</b></div><div class="status-line"><span>PROCESSAMENTO</span><b><span class="mini-led"></span> LOCAL</b></div><div class="card-bottom"><span class="mini-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>LATÊNCIA <b id="latency">—</b></span></div></section>
+          <section class="module-card glass shortcuts"><div class="card-kicker">ACESSO RÁPIDO <span>02</span></div><button class="shortcut" data-tab="voice"><span class="shortcut-icon">◉</span><span><b>Iniciar voz</b><small>Falar com o Alfred</small></span><i>↗</i></button><button class="shortcut" data-prompt="/fontes"><span class="shortcut-icon">⌕</span><span><b>Últimas fontes</b><small>Contexto da resposta</small></span><i>↗</i></button><button class="shortcut" data-prompt="/limpar"><span class="shortcut-icon">⌫</span><span><b>Limpar conversa</b><small>Apagar histórico em memória</small></span><i>↗</i></button></section>
+          <div class="local-note"><span>◇</span><p>Suas conversas permanecem nesta sessão local e não são enviadas para serviços externos pelo painel.</p></div></aside>
+        </div>
+      </section>
+
+      <section class="view" id="view-voice">
+        <div class="page-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> INTERFACE DE ÁUDIO <span class="heading-code">/ 02</span></div><h1>Alfred<span class="period">.</span></h1><p>Converse naturalmente. O microfone permanece sob seu controle.</p></div><div class="heading-orbit voice-orbit"><img class="reference-sphere mini-sphere" src="/ui/alfred-sphere.png?v=2" alt="Esfera orbital do Alfred"></div></div>
+        <div class="voice-grid"><section class="voice-console glass" id="voice-console"><div class="panel-top"><div class="panel-title"><span class="status-pulse" id="voice-pulse"></span><div><strong>CANAL DE VOZ</strong><small>CAPTURA LOCAL · 16 KHZ</small></div></div><span class="panel-live" id="voice-state-label">STANDBY</span></div><div class="voice-visual" id="voice-visual"><canvas class="sphere-mesh main-sphere" id="voice-sphere" aria-label="Esfera líquida de partículas do Alfred" data-sphere-state="ocioso"></canvas><span class="orbital-path" aria-hidden="true"><i></i></span></div><div class="voice-state"><strong id="voice-state">Pronto quando você estiver.</strong><span id="voice-detail">Inicie a sessão para ativar a captura de voz local.</span></div><div class="voice-actions"><button class="primary-button" id="voice-toggle"><span class="mic-icon">◉</span><span id="voice-toggle-label">INICIAR SESSÃO</span><b>↗</b></button><button class="mute-button" id="mute-button" disabled><span>◌</span> MUDO</button></div><div class="voice-foot"><span><i class="mini-led"></i> ÁUDIO NÃO ARMAZENADO</span><span>CONTROLE DISPONÍVEL NESTA TELA</span></div></section>
+        <aside class="voice-side"><section class="module-card glass mode-card"><div class="card-kicker">MODO DE ESCUTA <span>01</span></div><p>Escolha como o Alfred deve receber sua voz.</p><label class="mode-option selected"><input type="radio" name="mode" value="conversa" checked><span class="radio-mark"></span><span class="mode-text"><b>Conversa contínua</b><small>Escuta e encerra cada fala automaticamente.</small></span><span class="mode-tag">CONTÍNUO</span></label><label class="mode-option"><input type="radio" name="mode" value="apertar"><span class="radio-mark"></span><span class="mode-text"><b>Pressionar para falar</b><small>Ative a sessão para usar o modo push-to-talk.</small></span></label><label class="mode-option"><input type="radio" name="mode" value="palavra"><span class="radio-mark"></span><span class="mode-text"><b>Palavra de ativação</b><small>Modelo de ativação configurado localmente.</small></span></label></section><section class="module-card glass voice-info"><div class="card-kicker">CAMINHO DE ÁUDIO <span>02</span></div><div class="pipeline"><span>MICROFONE</span><i>›</i><span>STT LOCAL</span><i>›</i><span>ALFRED</span><i>›</i><span>VOZ</span></div><p>Reconhecimento e síntese processados na sua máquina. A voz configurada pode ser ajustada na aba de configuração.</p><button class="text-link" data-tab="settings">ABRIR CONFIGURAÇÃO DE VOZ <b>↗</b></button></section></aside></div>
+      </section>
+
+      <section class="view active" id="view-memory">
+        <div class="page-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> MAPA DE MEMÓRIA <span class="heading-code">/ 03</span></div><h1>Memória vetorial<span class="period">.</span></h1></div><div class="heading-orbit memory-orbit"><canvas class="sphere-mesh mini-sphere memory-sphere" id="memory-sphere" data-sphere-state="ocioso" data-sphere-points="5000" aria-label="Esfera 3D do Alfred"></canvas></div></div>
+        <div class="memory-toolbar"><div class="memory-live"><span class="status-pulse" id="memory-live-dot"></span><div><strong id="memory-status">CONECTANDO À MEMÓRIA</strong><small id="memory-updated">ATUALIZAÇÃO AUTOMÁTICA A CADA 3 SEGUNDOS</small></div></div><span class="memory-count" id="memory-node-count">0 VETORES · 0 LIGAÇÕES</span><button class="secondary-button" id="memory-refresh">↻ ATUALIZAR</button></div>
+        <div class="memory-grid"><section class="memory-canvas-panel"><div class="memory-canvas-wrap"><canvas id="memory-canvas" aria-label="Gráfico tridimensional de todos os vetores e suas ligações de similaridade"></canvas><div class="memory-empty" id="memory-empty"><span>✳</span><strong>Carregando índice vetorial</strong><p>Os vetores existentes serão exibidos mesmo sem uma conversa ativa.</p></div></div></section></div>
+      </section>
+      <section class="view" id="view-map">
+        <div class="page-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> SERGIPE · MAPA LOCAL <span class="heading-code">/ 04</span></div><h1>Sergipe<span class="period">.</span></h1><p>Mapa offline, construções mapeadas e lugares salvos.</p></div></div>
+        <div class="map-workspace">
+          <section class="map-panel glass" aria-label="Mapa offline">
+            <div class="map-canvas" id="map-canvas" role="application" aria-label="Mapa do estado de Sergipe">
+              <div class="map-placeholder" id="map-placeholder" role="status"><strong id="map-placeholder-title">Preparando mapa local</strong><p id="map-placeholder-message">O mapa e os lugares salvos serão carregados nesta área.</p></div>
+              <div class="map-live-warning">Posição em tempo real: não disponível. O mapa mostra só lugares que você salvou.</div>
+              <div class="map-voice-hint" id="map-voice-hint" hidden><span>◇</span> A sessão de voz está ativa. O modo leve pode reduzir o uso da GPU.</div>
+              <div class="map-controls" aria-label="Controles do mapa">
+                <button type="button" id="map-zoom-in" aria-label="Aumentar zoom" title="Aumentar zoom">+</button>
+                <button type="button" id="map-zoom-out" aria-label="Diminuir zoom" title="Diminuir zoom">−</button>
+                <button type="button" data-map-city="aracaju" aria-label="Ver construções de Aracaju" title="Ir para Aracaju">AJU</button>
+                <button type="button" data-map-city="laranjeiras" aria-label="Ver construções de Laranjeiras" title="Ir para Laranjeiras">LAR</button>
+                <button type="button" id="map-reset" aria-label="Restaurar visão inicial" title="Restaurar visão inicial">⌂</button>
+                <button type="button" id="map-view-toggle" aria-label="Alternar entre visão 2D e 3D" title="Alternar 2D e 3D">3D</button>
+                <button type="button" id="map-outline-toggle" aria-label="Alternar contornos das construções" title="Mostrar o contorno de cada casa e edifício mapeado em zoom alto" aria-pressed="true" class="active">SIL</button>
+                <button type="button" id="map-satellite-toggle" aria-label="Alternar imagem de satélite" title="Imagem de satélite: configure o provedor em config.yaml" aria-pressed="false">SAT</button>
+                <button type="button" id="map-satellite-toggle" aria-label="Alternar imagem de satélite" title="Alternar imagem de satélite" aria-pressed="false" disabled>SAT</button>
+              </div>
+              <div class="map-attribution" id="map-attribution">© OpenStreetMap contributors · Fonte local</div>
+            </div>
+            <div class="map-toolbar">
+              <div class="map-status"><span class="status-pulse" id="map-status-dot"></span><span id="map-status">MAPA SOB DEMANDA</span></div>
+              <label class="map-light-toggle"><input type="checkbox" id="map-light-toggle"><span class="map-switch"></span><span>Modo leve · 2D · construções visíveis</span></label>
+            </div>
+          </section>
+          <aside class="map-places-panel glass" aria-label="Lugares salvos">
+            <div class="map-panel-heading"><div class="card-kicker">LUGARES SALVOS <span id="map-place-count">0</span></div><button type="button" class="secondary-button" id="map-add-place" aria-label="Adicionar lugar ao mapa">＋ ADICIONAR</button></div>
+            <div class="map-session-notice" id="map-session-notice" role="status" hidden>Os lugares desta sessão ficam apenas na memória enquanto a chave SQLCipher não estiver disponível.</div>
+            <div class="map-place-filters" role="group" aria-label="Filtrar lugares por categoria">
+              <button type="button" class="active" data-map-filter="TODOS" aria-pressed="true">TODOS</button><button type="button" data-map-filter="CAS" aria-pressed="false">CAS</button><button type="button" data-map-filter="FAC" aria-pressed="false">FAC</button><button type="button" data-map-filter="TRB" aria-pressed="false">TRB</button><button type="button" data-map-filter="LOC" aria-pressed="false">LOC</button>
+            </div>
+            <ul class="map-place-list" id="map-place-list" aria-live="polite"><li class="map-place-empty">Os lugares salvos aparecerão aqui.</li></ul>
+            <section class="map-place-card" id="map-place-card" aria-live="polite" hidden>
+              <div class="card-kicker" id="map-card-code"></div><h2 id="map-card-name"></h2><p id="map-card-category"></p>
+              <div class="map-card-actions"><button type="button" class="secondary-button" id="map-edit-place">EDITAR</button><button type="button" class="secondary-button" id="map-move-place">MOVER NO MAPA</button><button type="button" class="map-danger-button" id="map-remove-place">REMOVER</button></div>
+            </section>
+            <form class="map-place-form" id="map-place-form" hidden>
+              <div class="card-kicker" id="map-form-title">NOVO LUGAR</div>
+              <label for="map-place-name">NOME</label><input id="map-place-name" name="nome" maxlength="80" required autocomplete="off">
+              <label for="map-place-category">CATEGORIA</label><select id="map-place-category" name="categoria"><option value="CAS">CAS · CASA</option><option value="FAC">FAC · FACULDADE</option><option value="TRB">TRB · TRABALHO</option><option value="LOC">LOC · OUTRO</option></select>
+              <div class="map-form-actions"><button type="button" class="secondary-button" id="map-cancel-place">CANCELAR</button><button type="submit" class="primary-button" id="map-save-place">SALVAR LUGAR</button></div>
+            </form>
+            <p class="map-data-note">Os nomes e as posições são dados sensíveis. Com a chave disponível, o Alfred os guarda no SQLCipher.</p>
+          </aside>
+        </div>
+      </section>
+      <section class="view" id="view-settings">
+        <div class="page-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> PREFERÊNCIAS LOCAIS <span class="heading-code">/ 03</span></div><h1>Configuração de voz<span class="period">.</span></h1><p>Ajuste a identidade e o ritmo da voz do Alfred.</p></div><div class="heading-orbit"><span class="orbit-ring"></span><span class="orbit-core">⌁</span><span class="orbit-satellite"></span></div></div>
+        <div class="settings-grid"><section class="settings-form glass"><div class="panel-top"><div class="panel-title"><span class="status-pulse"></span><div><strong>PERFIL DE VOZ</strong><small>VOICESTUDIO · CONFIGURAÇÃO LOCAL</small></div></div><span class="panel-live" id="catalog-status">CONECTANDO…</span></div><div class="settings-body"><div class="field-group"><label for="engine">MOTOR DE FALA</label><div class="select-wrap"><select id="engine"><option value="">Carregando motores…</option></select><span>⌄</span></div><small>Motor fixo para manter uma identidade consistente.</small></div><div class="field-group"><label for="voice-profile">PERFIL DE VOZ</label><div class="select-wrap"><select id="voice-profile"><option value="">Carregando perfis…</option></select><span>⌄</span></div><small id="profile-hint">Perfis disponíveis do VoiceStudio local.</small></div><div class="field-group slider-field"><div class="field-head"><label for="speed">VELOCIDADE DA FALA</label><output id="speed-output">1,00×</output></div><input id="speed" type="range" min="0.7" max="1.3" step="0.01" value="1"><div class="range-labels"><span>0,70× · PAUSADA</span><span>1,30× · RÁPIDA</span></div></div><div class="field-row"><div class="field-group"><label for="seed">SEED DA VOZ</label><input class="text-input" type="number" id="seed" min="0" max="999999999" value="42"><small>Repetibilidade do timbre.</small></div><div class="field-group"><label for="style">DESCRITORES DE VOZ</label><input class="text-input" id="style" maxlength="500" placeholder="male, low pitch, portuguese accent"><small>Marcadores separados por vírgulas.</small></div></div><div class="settings-actions"><div id="settings-message" class="settings-message"><span>◇</span> Ajustes são aplicados ao reiniciar a sessão.</div><div><button class="secondary-button" id="preview-button"><span>▷</span> OUVIR PRÉVIA</button><button class="primary-button save-button" id="save-button"><span>⌁</span> SALVAR VOZ <b>↗</b></button></div></div></div></section>
+        <aside class="settings-side"><section class="voice-preview glass"><div class="card-kicker">IDENTIDADE ATUAL <span>01</span></div><div class="preview-avatar"><canvas class="sphere-mesh preview-sphere" id="identity-sphere" aria-label="Esfera líquida de partículas do Alfred" data-sphere-state="ocioso"></canvas></div><div class="preview-name" id="preview-name">ALFRED<small>ASSISTENTE PESSOAL</small></div><div class="preview-wave" id="preview-wave"></div><div class="preview-state" id="preview-state">PERFIL PRONTO</div><div class="preview-facts"><div><span>MOTOR</span><b id="preview-engine">—</b></div><div><span>PERFIL</span><b id="preview-voice">—</b></div></div></section><div class="settings-note"><span>◈</span><div><b>Prévia de áudio</b><p>A prévia reproduz uma frase curta no VoiceStudio local. Nenhum arquivo de áudio é mantido.</p></div></div></aside></div>
+      </section>
+      <footer class="main-footer"><span>ALFRED <i>·</i> SISTEMA PESSOAL LOCAL</span><span>PRIVACIDADE POR DESIGN <b>◇</b></span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"><span>◇</span><span id="toast-text"></span></div>
+  <div class="modal-backdrop" id="confirm-modal"><section class="confirm-dialog glass"><div class="confirm-symbol">◇</div><div class="eyebrow">CONFIRMAÇÃO NECESSÁRIA</div><h2>Autorizar esta ação?</h2><p id="confirm-question"></p><div><button class="secondary-button" id="confirm-no">CANCELAR</button><button class="primary-button" id="confirm-yes">SIM, AUTORIZAR <b>↗</b></button></div></section></div>
+  <script src="/ui/vendor/maplibre-gl/maplibre-gl.js" defer></script>
+  <script src="/ui/mapa/mapa.js?v=1" defer></script>
+  <script src="/ui/sphere.js?v=1" defer></script>
+  <script src="/ui/app.js?v=36" defer></script>
+</body>
+</html>

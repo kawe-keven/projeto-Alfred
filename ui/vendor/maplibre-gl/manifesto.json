@@ -1,0 +1,14 @@
+{
+  "pacote": "maplibre-gl",
+  "versao": "5.6.0",
+  "publicado_em": "2025-03-06T21:16:45Z",
+  "origem_tarball": "https://registry.npmjs.org/maplibre-gl/-/maplibre-gl-5.6.0.tgz",
+  "integridade_registro": "sha512-7TuHMozUC4rlIp08bSsxCixFn18P24otrlZU/7UGCO5RufFTJadFzauTrvBHr9FB67MbJ6nvFXEftGd0bUl4Iw==",
+  "sha256_tarball": "6054d99e8942581cc1bb1cf1e4f2171c5ab076a19eadb72c35c2088ce85ce27f",
+  "arquivos_sha256": {
+    "maplibre-gl.css": "792ac997dcf6ae6f643eb4e2dee4630c85e7056526bd8fb85ffe83c67d6c41b4",
+    "maplibre-gl.js": "07e6ca71a5b6d835a7c3803fb484f0a6e5f0dcbfa131407666edb9e9316564f9",
+    "maplibre-gl-csp-worker.js": "127ae116b0d4c0e4a2d215d68b10300fa7c2365d0d234831ff037af5cff58524",
+    "LICENSE.txt": "ee5fc05a0677eaf69601d2c7db0d9ecd6cc27c3abc1d0733bc9ed34707cf8ef2"
+  }
+}

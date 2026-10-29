@@ -1,0 +1,7 @@
+/* Entrada principal; os módulos preservam a ordem da cascata. */
+@import url("styles/foundation.css");
+@import url("styles/interface.css");
+@import url("styles/responsive.css");
+@import url("styles/visuals.css");
+@import url("styles/refinements.css");
+@import url("styles/mapa.css");

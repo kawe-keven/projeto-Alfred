@@ -1,0 +1,412 @@
+/* Alfred particle sphere and orbit */
+.main-sphere {
+  position: relative;
+  z-index: 1;
+  width: min(100%,430px);
+  height: 100%;
+  max-height: 275px;
+  filter: drop-shadow(0 0 12px #c8e3e411);
+}
+
+.voice-console.speaking .main-sphere {
+  filter: drop-shadow(0 0 19px #d9f7f527);
+}
+
+.voice-console.listening .main-sphere {
+  filter: drop-shadow(0 0 13px #92e8df21);
+}
+
+.voice-visual:has(.main-sphere) {
+  background: radial-gradient(ellipse at center,#a9e6e512,transparent 56%);
+}
+
+.preview-avatar {
+  height: 130px;
+  margin-top: 5px;
+}
+
+.preview-sphere {
+  width: 100%;
+  height: 100%;
+  max-width: 188px;
+  margin: 0 auto;
+  filter: drop-shadow(0 0 9px #c8e3e414);
+}
+
+.preview-wave.playing+.preview-state {
+  color: var(--cyan);
+}
+
+.voice-console.speaking .panel-live {
+  color: var(--cyan);
+  text-shadow: 0 0 9px #65e2d2aa;
+}
+
+.voice-console.speaking .status-pulse {
+  animation: pulse .7s infinite;
+}
+
+.voice-console.listening .panel-live {
+  color: #b7d1df;
+}
+
+@keyframes orbit-trace {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .heading-orbit:before {
+    animation: none;
+  }
+
+}
+
+/* Alfred particle sphere and orbit */
+.main-sphere {
+  max-height: 310px;
+}
+
+.brand-mark {
+  padding: 2px;
+  overflow: visible;
+}
+
+.brand-sphere {
+  width: 32px;
+  height: 32px;
+  margin: -1px;
+}
+
+.status-sphere {
+  width: 38px;
+  height: 38px;
+  position: absolute;
+  inset: 0;
+}
+
+.system-ring {
+  isolation: isolate;
+  overflow: visible;
+}
+
+.welcome-sigil {
+  width: 58px;
+  height: 58px;
+  border-color: transparent;
+  background: transparent;
+  overflow: visible;
+}
+
+.welcome-sigil:before,.welcome-sigil:after {
+  display: none;
+}
+
+.small-sphere {
+  width: 58px;
+  height: 58px;
+  overflow: visible;
+}
+
+.preview-sphere {
+  overflow: visible;
+}
+
+.voice-visual:has(.main-sphere) {
+  height: 320px;
+  background: radial-gradient(ellipse at center,#08090a 0%,#090d12 66%,transparent 100%);
+}
+
+.voice-visual:has(.main-sphere):before,.voice-visual:has(.main-sphere):after {
+  display: none;
+}
+
+/* Alfred particle sphere and orbit */
+.main-sphere {
+  width: min(100%,500px);
+  max-height: 320px;
+}
+
+.waveform {
+  display: none;
+}
+
+.voice-console.speaking .main-sphere {
+  filter: drop-shadow(0 0 25px #f4f4f433);
+}
+
+.preview-sphere {
+  filter: drop-shadow(0 0 9px #eeeeee18);
+}
+
+.brand-sphere,.status-sphere,.small-sphere,.mini-sphere {
+  filter: grayscale(1);
+}
+
+@media(max-width:520px) {
+  .voice-visual:has(.main-sphere) {
+    height: 280px;
+  }
+
+/* Alfred particle sphere and orbit */
+  .main-sphere {
+    max-height: 280px;
+  }
+
+}
+
+.reference-sphere {
+  display: block;
+  object-fit: contain;
+  mix-blend-mode: normal;
+  animation: particle-turn 54s linear infinite;
+  filter: brightness(.98);
+  user-select: none;
+}
+
+/* Alfred particle sphere and orbit */
+.main-sphere {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 410px;
+  height: 410px;
+  max-width: 115vw;
+  max-height: none;
+  transform: translate(-50%,-50%);
+  animation: main-turn 48s linear infinite;
+  filter: brightness(.98);
+}
+
+.voice-console.speaking .main-sphere {
+  animation: main-turn 27s linear infinite,particle-speech 1.35s ease-in-out infinite;
+  filter: brightness(1.12);
+}
+
+.voice-console.listening .main-sphere {
+  filter: brightness(1.04);
+}
+
+.preview-sphere {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  animation: particle-turn 54s linear infinite;
+}
+
+.preview-sphere[data-sphere-state="falando"] {
+  animation: particle-turn 54s linear infinite,preview-speech 1.3s ease-in-out infinite;
+}
+
+.tiny-sphere {
+  width: 40px;
+  height: 40px;
+  margin: -3px;
+}
+
+.small-sphere {
+  width: 68px;
+  height: 68px;
+  margin: -5px auto 2px;
+}
+
+.mini-sphere {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  overflow: visible;
+}
+
+.orbital-path {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  transform: scaleY(.56);
+  animation: orbit-particle 13s linear infinite;
+  pointer-events: none;
+}
+
+.orbital-path i {
+  position: absolute;
+  left: -2px;
+  top: -158px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 5px #fff,0 0 13px #dfe8e8aa;
+}
+
+.orbital-path:before {
+  content: '';
+  position: absolute;
+  left: -1px;
+  top: -147px;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: #e8ecec;
+  opacity: .52;
+  box-shadow: 0 0 5px #fff;
+}
+
+.voice-console.speaking .orbital-path {
+  animation-duration: 5.5s;
+}
+
+.voice-console.speaking .orbital-path i {
+  box-shadow: 0 0 8px #fff,0 0 19px #fff;
+}
+
+@keyframes particle-turn {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+@keyframes main-turn {
+  from {
+    transform: translate(-50%,-50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%,-50%) rotate(360deg);
+  }
+
+}
+
+@keyframes orbit-particle {
+  from {
+    transform: scaleY(.56) rotate(0deg);
+  }
+
+  to {
+    transform: scaleY(.56) rotate(360deg);
+  }
+
+}
+
+@keyframes particle-speech {
+  0%,100% {
+    filter: brightness(1.08) drop-shadow(0 0 8px #fff2);
+    opacity: .94;
+  }
+
+  50% {
+    filter: brightness(1.55) drop-shadow(0 0 25px #fff9);
+    opacity: 1;
+  }
+
+}
+
+@keyframes preview-speech {
+  0%,100% {
+    filter: brightness(1) drop-shadow(0 0 5px #fff2);
+  }
+
+  50% {
+    filter: brightness(1.55) drop-shadow(0 0 15px #fff7);
+  }
+
+}
+
+@media(max-width:520px) {
+
+/* Alfred particle sphere and orbit */
+  .main-sphere {
+    width: 365px;
+    height: 365px;
+  }
+
+  .voice-visual:has(.main-sphere) {
+    height: 280px;
+  }
+
+  .orbital-path i {
+    top: -139px;
+  }
+
+}
+
+/* 3D liquid particle mesh */
+.sphere-mesh {
+  display: block;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 8px #fff3);
+  transition: filter 560ms cubic-bezier(.22,.68,.24,1);
+}
+
+.voice-console.speaking .sphere-mesh {
+  filter: drop-shadow(0 0 22px #e5ffff88);
+}
+
+.sphere-mesh.main-sphere {
+  animation: none;
+  transform: translate(-50%,-50%);
+}
+
+.sphere-mesh[data-sphere-state="erro"],
+.sphere-mesh[data-sphere-state="indisponivel"],
+.sphere-mesh[data-sphere-state="offline"] {
+  animation: erro-pulsar 1.35s ease-in-out infinite;
+}
+
+.sphere-mesh.main-sphere[data-sphere-state="erro"],
+.sphere-mesh.main-sphere[data-sphere-state="indisponivel"],
+.sphere-mesh.main-sphere[data-sphere-state="offline"] {
+  animation-name: erro-pulsar-esfera;
+}
+
+.voice-visual:has(.sphere-mesh[data-sphere-state="erro"]) .orbital-path i,
+.voice-visual:has(.sphere-mesh[data-sphere-state="indisponivel"]) .orbital-path i,
+.voice-visual:has(.sphere-mesh[data-sphere-state="offline"]) .orbital-path i {
+  background: #ff344f;
+  box-shadow: 0 0 6px #ff344f,0 0 15px #ff344f99;
+}
+
+@keyframes erro-pulsar {
+  0%,100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 8px #ff344f66) brightness(1.05);
+  }
+
+  50% {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 24px #ff344fcc) brightness(1.45);
+  }
+}
+
+@keyframes erro-pulsar-esfera {
+  0%,100% {
+    transform: translate(-50%,-50%) scale(1);
+    filter: drop-shadow(0 0 10px #ff344f66) brightness(1.05);
+  }
+
+  50% {
+    transform: translate(-50%,-50%) scale(1.08);
+    filter: drop-shadow(0 0 30px #ff344fcc) brightness(1.45);
+  }
+}
+
+.voice-console.speaking .sphere-mesh.main-sphere {
+  animation: none;
+  filter: drop-shadow(0 0 22px #e5ffff88);
+}
+

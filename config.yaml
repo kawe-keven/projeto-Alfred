@@ -1,0 +1,49 @@
+# Configuração do ciclo de voz local. Variáveis ALFRED_* do ambiente prevalecem.
+llm:
+  provider: colibri
+  model: qwen3.6-colibri
+  url: http://127.0.0.1:8000/v1
+  timeout_seconds: 120
+  history_turns: 6
+  context_tokens: 4096
+  max_tokens: 192
+embeddings:
+  url: http://localhost:11434
+audio:
+  sample_rate: 16000
+  channels: 1
+  block_ms: 30                  # 480 amostras por bloco
+vad:
+  engine: silero
+  start_threshold: 0.5
+  end_threshold: 0.35
+  silence_ms: 500
+  silence_hesitation_ms: 600
+  barge_in_threshold: 0.8
+  barge_in_min_ms: 120
+stt:
+  engine: parakeet
+  model: nvidia/parakeet-tdt-0.6b-v3
+  language: pt
+  device: cpu                    # Parakeet usa CPU via ONNX int8
+  compute_type: int8
+  profile: equilibrado
+  hotwords: []
+tts:
+  provider: voicestudio
+  url: http://127.0.0.1:3900/v1
+  model: omnivoice
+  voice_id: 66b001cc
+  output_format: pcm
+  sample_rate: 24000
+  speed: 1.0
+  seed: 42                       # seed fixa para repetibilidade; API não expõe stability
+  style: "Fale em português brasileiro com ritmo de conversa espontânea: entonação sutilmente variada, pausas breves entre ideias e um tom caloroso e tranquilo. Evite soar como locução, leitura de texto ou anúncio, sem exagerar emoções. Mantenha o mesmo timbre. Pronuncie termos técnicos comuns em inglês naturalmente, sem trocar de idioma."
+  pronunciation_file: src/alfred/configuracao/pronuncias.toml
+voice:
+  mode: conversa
+  debug_dir: dados/debug_voz
+map:
+  # Opcional: URL HTTPS do provedor XYZ com {z}, {x} e {y}; mantenha o token restrito.
+  satellite_url: ""
+  satellite_attribution: ""

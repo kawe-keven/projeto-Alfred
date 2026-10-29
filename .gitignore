@@ -1,32 +1,16 @@
-# Python
+.env
+.venv/
 __pycache__/
 *.py[cod]
-*.pyo
-*.pyd
-*.so
+*.egg-info/
+build/
+dist/
+/dados/
+/projetos/
 .pytest_cache/
+.pytest_tmp_*/
+.pytest_run_*/
+.pytest_baseline_*/
 .mypy_cache/
-.coverage
-
-# Virtual environments
-.venv/
-venv/
-
-# Frontend / Node
-frontend/node_modules/
-frontend/dist/
-frontend/.vite/
-frontend/.cache/
-
-# Logs and runtime outputs
-logs/*.log
-*.log
-
-# Local databases and vector store artifacts
-memory/*.db
-memory/vector_db/
-
-# OS/editor noise
-.DS_Store
-Thumbs.db
-.vscode/
+.ruff_cache/
+/src/alfred/memoria/perfil/*.md

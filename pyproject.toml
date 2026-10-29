@@ -45,6 +45,7 @@ where = ["src"]
 
 [tool.pytest.ini_options]
 addopts = ["-m", "not lento and not integracao and not ao_vivo"]
+testpaths = ["testes"]
 markers = [
     "integracao: cenários que verificam componentes conectados em fluxo integrado",
     "lento: medições sintéticas de escala e desempenho",
